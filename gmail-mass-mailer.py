@@ -3,6 +3,7 @@ import smtplib
 from threading import Thread
 from time import sleep
 from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
 root = Tk()
@@ -27,6 +28,9 @@ def send_mail(email, password):
     message['From'] = email
     message['To'] = victims_email.get()
     message['Subject'] = email_subject.get()
+    body = email_message.get()
+    body = MIMEText(body)
+    message.attach(body)
     try:
         server = smtplib.SMTP()
         server.connect("smtp.gmail.com", 587)
