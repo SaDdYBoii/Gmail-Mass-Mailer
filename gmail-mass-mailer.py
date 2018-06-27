@@ -72,7 +72,8 @@ def send_emails():
             for x in email_list:
                 x = x.split(":")
                 Thread(target=send_mail, args=(x[0], x[1])).start()
-                sleep(0.1)
+                sleep(0.5)
+        clear_list()
 
 
 email_address = StringVar()
