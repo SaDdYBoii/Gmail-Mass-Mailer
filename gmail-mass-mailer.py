@@ -13,7 +13,6 @@ text = Text(root)
 text.config(width=50, height=10, state=DISABLED)
 text.grid(column=1, columnspan=2, row=4)
 email_list = []
-successfully_sent = 0
 
 
 def text_print(msg):
@@ -23,7 +22,6 @@ def text_print(msg):
 
 
 def send_mail(email, password):
-    global successfully_sent
     message = MIMEMultipart()
     message['From'] = email
     message['To'] = victims_email.get()
@@ -38,7 +36,6 @@ def send_mail(email, password):
         server.login(email, password)
         server.sendmail(email, victims_email.get(), message.as_string())
         server.quit()
-        successfully_sent += 1
         text_print("Successfully sent email from: \n" + email)
     except:
         text_print("An error occurred while \ntrying to send email from: \n" + email)
